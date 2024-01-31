@@ -17,7 +17,29 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
+      TABLE_PRODUCTS: 'products',
+      TABLE_STOCKSS: 'stocks'
     },
+    iam: {
+      role: {
+        statements: [{
+          Effect: 'Allow',
+          Action: [
+            "dynamodb:DescribeTable",
+            "dynamodb:Query",
+            "dynamodb:Scan",
+            "dynamodb:GetItem",
+            "dynamodb:PutItem",
+            // "dynamodb:UpdateItem",
+            // "dynamodb:DeleteItem",
+          ],
+          Resource: [
+            "arn:aws:dynamodb:us-east-1:*:table/products",
+            "arn:aws:dynamodb:us-east-1:*:table/stocks",
+          ]
+        }]
+      }
+    }
   },
   // import the function via paths
   functions: { getProductsById, getProductsList },

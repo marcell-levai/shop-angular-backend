@@ -8,7 +8,8 @@
     "deploy": "sls deploy",
     "offline": "sls offline start",
     "local": "sls invoke local -f getProductsList --path src/functions/getProductsList/mock.json",
-    "gen-doc": "sls generate swagger"
+    "gen-doc": "sls generate swagger",
+    "init": "ts-node src/scripts/init-tables"
   },
   "engines": {
     "node": ">=14.15.0"
