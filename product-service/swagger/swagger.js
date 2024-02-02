@@ -61,6 +61,26 @@
             }
           }
         }
+      },
+      "post": {
+        "summary": "createProduct",
+        "description": "",
+        "operationId": "createProduct.post.products",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "default": {
+            "description": "default response"
+          }
+        }
       }
     }
   },
@@ -91,13 +111,81 @@
       "required": [
         "count",
         "description",
-        "id",
         "price",
         "title"
       ],
       "additionalProperties": false,
       "title": "Product",
       "type": "object"
+    },
+    "Products": {
+      "items": {
+        "$ref": "#/definitions/Product",
+        "title": "Products.[]"
+      },
+      "title": "Products.[]",
+      "type": "array"
+    },
+    "ProductDocument": {
+      "properties": {
+        "id": {
+          "title": "ProductDocument.id",
+          "type": "string"
+        },
+        "title": {
+          "title": "ProductDocument.title",
+          "type": "string"
+        },
+        "description": {
+          "title": "ProductDocument.description",
+          "type": "string"
+        },
+        "price": {
+          "title": "ProductDocument.price",
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "price"
+      ],
+      "additionalProperties": false,
+      "title": "ProductDocument",
+      "type": "object"
+    },
+    "StockDocument": {
+      "properties": {
+        "product_id": {
+          "title": "StockDocument.product_id",
+          "type": "string"
+        },
+        "count": {
+          "title": "StockDocument.count",
+          "type": "number"
+        }
+      },
+      "required": [
+        "product_id",
+        "count"
+      ],
+      "additionalProperties": false,
+      "title": "StockDocument",
+      "type": "object"
+    },
+    "Document": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ProductDocument",
+          "title": "Document"
+        },
+        {
+          "$ref": "#/definitions/StockDocument",
+          "title": "Document"
+        }
+      ],
+      "title": "Document"
     },
     "ProductNotFoundResponseBody": {
       "properties": {
@@ -115,14 +203,6 @@
       "additionalProperties": false,
       "title": "ProductNotFoundResponseBody",
       "type": "object"
-    },
-    "Products": {
-      "items": {
-        "$ref": "#/definitions/Product",
-        "title": "Products.[]"
-      },
-      "title": "Products.[]",
-      "type": "array"
     }
   },
   "securityDefinitions": {}
