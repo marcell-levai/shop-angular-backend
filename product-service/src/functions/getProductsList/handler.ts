@@ -7,6 +7,7 @@ import { databaseService } from 'src/dependencies';
 
 const getProductsList = (databaseService: IDatabaseService): ValidatedEventAPIGatewayProxyEvent<APIGatewayProxyResult> => async (event) => {
   console.log(event);
+
   const productDocuments = await databaseService.scanProducts();
 
   const products = await Promise.all(productDocuments.map(async (product) => {
