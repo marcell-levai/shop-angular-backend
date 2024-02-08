@@ -203,6 +203,35 @@
       "additionalProperties": false,
       "title": "ProductNotFoundResponseBody",
       "type": "object"
+    },
+    "CreateProductRequestBody": {
+      "properties": {
+        "title": {
+          "title": "CreateProductRequestBody.title",
+          "type": "string"
+        },
+        "description": {
+          "title": "CreateProductRequestBody.description",
+          "type": "string"
+        },
+        "price": {
+          "title": "CreateProductRequestBody.price",
+          "type": "number"
+        },
+        "count": {
+          "title": "CreateProductRequestBody.count",
+          "type": "number"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "price",
+        "count"
+      ],
+      "additionalProperties": false,
+      "title": "CreateProductRequestBody",
+      "type": "object"
     }
   },
   "securityDefinitions": {}

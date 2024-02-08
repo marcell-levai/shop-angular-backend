@@ -27,22 +27,31 @@ const serverlessConfiguration: AWS = {
     },
     iam: {
       role: {
-        statements: [{
-          Effect: 'Allow',
-          Action: [
-            "dynamodb:DescribeTable",
-            "dynamodb:Query",
-            "dynamodb:Scan",
-            "dynamodb:GetItem",
-            "dynamodb:PutItem",
-            // "dynamodb:UpdateItem",
-            // "dynamodb:DeleteItem",
-          ],
-          Resource: [
-            "arn:aws:dynamodb:us-east-1:*:table/products",
-            "arn:aws:dynamodb:us-east-1:*:table/stocks",
-          ]
-        }]
+        statements: [
+          {
+            Effect: 'Allow',
+            Action: [
+              "dynamodb:DescribeTable",
+              "dynamodb:Query",
+              "dynamodb:Scan",
+              "dynamodb:GetItem",
+              "dynamodb:PutItem",
+              // "dynamodb:UpdateItem",
+              // "dynamodb:DeleteItem",
+            ],
+            Resource: [
+              "arn:aws:dynamodb:us-east-1:*:table/products",
+              "arn:aws:dynamodb:us-east-1:*:table/stocks",
+            ]
+          },
+          {
+            Effect: "Allow",
+            Resource: {
+              Ref: "createProductTopic"
+            },
+            Action: ["sns:*"]
+          }
+        ]
       }
     }
   },
