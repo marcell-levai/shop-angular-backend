@@ -17,7 +17,8 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
-      IMPORT_BUCKET: 'lma-shop-angular-imports'
+      IMPORT_BUCKET: 'lma-shop-angular-imports',
+      CATALOG_ITEMS_QUEUE_URL: 'https://sqs.us-east-1.amazonaws.com/381492042273/catalogItemsQueue'
     },
     iam: {
       role: {
